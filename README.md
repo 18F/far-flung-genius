@@ -5,7 +5,7 @@
 `Far-flung-genius` is a prototype that tries to make
 regulations for acquisitions more reasonable and also more personalized.
 Teams within government have their own policies and practices around
-regulation. This prototype combines the great ideas in [https://http://genius.com/](the Genius lyric annotation application) and tries to apply it to the electonic regulations.
+regulation. This prototype combines the great ideas in [http://genius.com/](the Genius lyric annotation application) and tries to apply it to the electronic regulations.
 
 Additional resources:
 * Original electronic regulations site for acquisitions: [http://farsite.hill.af.mil](http://farsite.hill.af.mil/#Regs)
@@ -30,7 +30,7 @@ script:
     npm run dev
 
 Unfortunately, rerunning the sass is a different process. To compile the
-css takes an addition script:
+css takes an additional script:
 
     npm run dev_sass
 
