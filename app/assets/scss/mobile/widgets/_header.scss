@@ -1,0 +1,6 @@
+#header {
+  background-color: $primary;
+  height: 3 * $em;
+  border-bottom: 1px solid transparentize($lightest-color, 0.8);
+  @include box-shadow($darkest-color 0px 0.5px 10px);
+}

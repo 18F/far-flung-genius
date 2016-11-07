@@ -1,0 +1,15 @@
+#page {
+  max-width: $tablet-break-point - $spacing*2;
+  margin: 0 auto;
+  @include box-shadow($darkest-color 0 0 $spacing*2)
+}
+
+#header {
+  .inner {
+    padding: 10px;
+  }
+}
+
+.dialog-container {
+  width: 50%;
+}

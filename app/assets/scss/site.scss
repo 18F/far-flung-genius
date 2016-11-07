@@ -1,0 +1,73 @@
+@import "shipd-all";
+
+// layout basics
+img { display: block; }
+
+html {
+  background-color: $color-primary-alt;
+}
+
+header, footer {
+  color: $color-primary-darkest;
+}
+
+header {
+  line-height: 1;
+  h1, h2, h3, h4, h5, h6, p {
+    padding-bottom: 0;
+  }
+}
+
+footer {
+  .our-logo {
+    width: 33.333333%;
+    max-width: 240px;
+  }
+  .tts-logo {
+    width: 100%;
+  }
+}
+
+header {
+  .inner {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.usa-pride-banner {
+  font-size: 14px;
+  color: white;
+  background-color: $color-cool-blue;
+
+  img {
+    padding-top: 3px;
+  }
+
+  .spacer {
+    width: 1.5rem;
+    height: 1rem;
+  }
+}
+
+.site-title {
+  font-family: $font-serif;
+  line-height: 1.25;
+
+  a {
+    font-size: 2.5rem;
+    color: $color-primary-darkest;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .site-description {
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.page {
+  background-color: white;
+}
