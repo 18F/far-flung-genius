@@ -1,0 +1,40 @@
+{
+  "name": "far-flung-genius",
+  "version": "1.0.0",
+  "description": "Genius-style annotation prototype for the FAR (Federal Acquisition Regulation)",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test node_modules/.bin/mocha --recursive --slow 1500",
+    "lint": "node_modules/.bin/jshint app/ test/",
+    "start": "node index.js",
+    "dev": "node_modules/.bin/nodemon -e js,mustache index.js",
+    "dev_sass": "node_modules/.bin/nodemon -e scss -x \"node scripts/compile-scss\"",
+    "test_coverage": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18F/far-flung-genius.git"
+  },
+  "keywords": [
+    "FAR",
+    "acquisitions",
+    "regulations",
+    "e-regs",
+    "prototype"
+  ],
+  "author": "baccigalupi",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/18F/far-flung-genius/issues"
+  },
+  "homepage": "https://github.com/18F/far-flung-genius#readme",
+  "devDependencies": {
+    "codeclimate-test-reporter": "^0.4.0",
+    "continua11y-acceptance": "^1.1.1",
+    "continua11y-ci-reporter": "^1.0.0",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.3",
+    "mocha": "^3.1.0",
+    "nodemon": "^1.11.0"
+  }
+}
