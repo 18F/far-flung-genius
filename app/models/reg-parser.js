@@ -31,40 +31,58 @@ class RegParser {
     return this.data.link;
   }
 
-  subject() {
-    if (!this.reserved()) {
-      return this.data.subject;
-    }
-  }
-
-  citation() {
-    if (!this.reserved()) {
-      return this.data.citation;
-    }
-  }
-
-  preface() {
-    let preface = {};
-    if (!this.reserved()) {
-      let body = this.data.body || '';
-      preface.html = body;
-      preface.text = body.replace(/<[^>]*>/g, '');
-    }
-    return preface;
-  }
-
-  excerpt() {
-    let preface = {};
-    if (!this.reserved()) {
-      let extract = this.data.extract || '';
-      preface.html = extract;
-      preface.text = extract.replace(/<[^>]*>/g, '');
-    }
-    return preface;
+  delegate() {
+    if (this._delegate) { return this._delegate; }
+    let Klass = this.reserved() ? ReservedNullParser : UnreservedParser;
+    this._delegate = new Klass(this.data);
+    return this._delegate;
   }
 
   parseNumber(number) {
     return number.split(/[-|.]/);
+  }
+}
+
+['subject', 'citation', 'preface', 'excerpt'].forEach((method) => {
+  RegParser.prototype[method] = function() {
+    return this.delegate()[method]();
+  };
+});
+
+class ReservedNullParser {
+  subject() {}
+  citation() {}
+  preface() { return {}; }
+  excerpt() { return {}; }
+}
+
+class UnreservedParser {
+  constructor(data) {
+    this.data = data;
+  }
+
+  subject() {
+    return this.data.subject;
+  }
+
+  citation() {
+    return this.data.citation;
+  }
+
+  preface() {
+    let text = this.data.body || '';
+    return {
+      html: text,
+      text: text.replace(/<[^>]*>/g, '')
+    };
+  }
+
+  excerpt() {
+    let text = this.data.extract || '';
+    return {
+      html: text,
+      text: text.replace(/<[^>]*>/g, '')
+    };
   }
 }
 
