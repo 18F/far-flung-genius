@@ -24,7 +24,7 @@ script:
     npm run dev
 
 Unfortunately, rerunning the sass is a different process. To compile the
-css takes an addition script:
+css takes an additional script:
 
     npm run dev_sass
 
