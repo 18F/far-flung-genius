@@ -5,7 +5,7 @@ if (!env || env === 'undefined') {
   env = 'development';
 }
 
-let database    = process.env.DATABASE_NAME || 'far-flung-genius-' + env;
+let database    = process.env.DATABASE_NAME || 'the-reckoning-' + env;
 let username    = process.env.DATABASE_USER_NAME;
 let password    = process.env.DATABASE_PASSWORD;
 let databaseUrl = process.env.DATABASE_URL;

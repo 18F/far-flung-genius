@@ -1,7 +1,7 @@
 {
-  "name": "far-flung-genius",
+  "name": "the-reckoning",
   "version": "1.0.0",
-  "description": "Genius-style annotation prototype for the FAR (Federal Acquisition Regulation)",
+  "description": "Application for integrating several accounting related data sources",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test node_modules/.bin/mocha --recursive --slow 1500",
@@ -13,21 +13,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/18F/far-flung-genius.git"
+    "url": "git+https://github.com/18F/the-reckoning.git"
   },
   "keywords": [
-    "FAR",
-    "acquisitions",
-    "regulations",
-    "e-regs",
-    "prototype"
+    "accounting",
+    "data reckoning"
   ],
   "author": "baccigalupi",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/18F/far-flung-genius/issues"
+    "url": "https://github.com/18F/the-reckoning/issues"
   },
-  "homepage": "https://github.com/18F/far-flung-genius#readme",
+  "homepage": "https://github.com/18F/the-reckoning#readme",
   "dependencies": {
     "async": "^2.1.2",
     "bluebird": "^3.4.6",

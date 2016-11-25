@@ -11,7 +11,7 @@ let server = app.listen(port, () => {
   }
   address += ':';
 
-  console.log('Running Far-flung-genius at', address + port);
+  console.log('Running the-reckoning at', address + port);
 });
 
 module.exports = server;

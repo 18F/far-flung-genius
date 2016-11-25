@@ -1,15 +1,9 @@
-# Far-flung-genius
+# The Reckoning!
 
-[![Build Status](https://travis-ci.org/18F/far-flung-genius.svg?branch=master)](https://travis-ci.org/18F/far-flung-genius) [![Test Coverage](https://codeclimate.com/github/18F/far-flung-genius/badges/coverage.svg)](https://codeclimate.com/github/18F/far-flung-genius/coverage) [![Code Climate](https://codeclimate.com/github/18F/far-flung-genius/badges/gpa.svg)](https://codeclimate.com/github/18F/far-flung-genius) [![Continua11y](https://continua11y-staging.apps.cloud.gov/badges/18F/far-flung-genius/master)](https://continua11y-staging.apps.cloud.gov)
+[![Build Status](https://travis-ci.org/18F/the-reckoning.svg?branch=master)](https://travis-ci.org/18F/the-reckoning) [![Test Coverage](https://codeclimate.com/github/18F/the-reckoning/badges/coverage.svg)](https://codeclimate.com/github/18F/the-reckoning/coverage) [![Code Climate](https://codeclimate.com/github/18F/the-reckoning/badges/gpa.svg)](https://codeclimate.com/github/18F/the-reckoning) [![Continua11y](https://continua11y-staging.apps.cloud.gov/badges/18F/the-reckoning/master)](https://continua11y-staging.apps.cloud.gov)
 
-`Far-flung-genius` is a prototype that tries to make
-regulations for acquisitions more reasonable and also more personalized.
-Teams within government have their own policies and practices around
-regulation. This prototype combines the great ideas in [https://http://genius.com/](the Genius lyric annotation application) and tries to apply it to the electonic regulations.
-
-Additional resources:
-* Original electronic regulations site for acquisitions: [http://farsite.hill.af.mil](http://farsite.hill.af.mil/#Regs)
-* A revamped version of the above site: [https://www.acquisition.gov/?q=browsefar](https://www.acquisition.gov/?q=browsefar)
+`the-reckoning` is an application to aid our accounting team in
+integrating several data sources in order to reduce the time to invoice.
 
 ## Contributing
 
@@ -49,8 +43,8 @@ To get started copy the sample file to `.env`.
 Database is postgres and you need to create these databases outside the
 application scripts:
 
-    createdb far-flung-genius-test # for test env
-    createdb far-flung-genius-development # for development
+    createdb the-reckoning-test # for test env
+    createdb the-reckoning-development # for development
 
 The database sql abstraction is provided by the module `knex`, and other database configuration options can be found in the `./knexfile.js`.
 
