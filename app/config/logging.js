@@ -1,13 +1,14 @@
 'use strict';
 
 const winston           = require('winston');
+const logDir            = __dirname + '/../../log';
 
 const defaultLogging = {
   transports: [ new winston.transports.Console({ json: true }) ]
 };
 
 const testLogging = {
-  transports: [new winston.transports.File({dirname: __dirname + '/../../log'})]
+  transports: [ new winston.transports.File({dirname: logDir}) ]
 };
 
 module.exports = function loggingConfig() {
@@ -18,5 +19,5 @@ module.exports = function loggingConfig() {
     config = defaultLogging;
   }
 
-  return  config;
+  return config;
 };
