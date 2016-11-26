@@ -19,7 +19,7 @@ label.button {
   font-family: $button-font;
   font-weight: bold;
   background-color: $primary;
-  color: $darkest-color;
+  color: $lightest-color;
   padding: $spacing*1.2 $spacing*3;
   line-height: 1;
   letter-spacing: 1px;
@@ -28,7 +28,7 @@ label.button {
   cursor: pointer;
 
   @include rounded;
-  @include shadowed;
+  /*@include shadowed;*/
   @include line;
 
   &:hover {
@@ -38,7 +38,7 @@ label.button {
 
   &:active {
     background-color: $primary-dark;
-    @include depressed-shadow;
+    /*@include depressed-shadow;*/
   }
 
   &.accent {

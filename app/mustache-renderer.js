@@ -33,7 +33,7 @@ class MustacheRenderer {
   }
 
   layoutView() {
-    return MustacheRenderer.views.layout;
+    return Object.assign({}, MustacheRenderer.views.layout, {controller_namespace: this.name + '-page'});
   }
 
   view() {

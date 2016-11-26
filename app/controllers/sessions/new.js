@@ -1,6 +1,9 @@
 'use strict';
 
-module.exports = function dashboard(req, res) {
-  res.end('ok!');
+const MustacheRenderer = require('../../mustache-renderer');
+
+module.exports = function notFound(req, res) {
+  let renderer = new MustacheRenderer('sign-in');
+  res.send(renderer.render());
 };
 

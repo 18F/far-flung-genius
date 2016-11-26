@@ -15,7 +15,10 @@
 .size-3-5{width:60%;}
 .size-4-5{width:80%;}
 
-.last-unit{float:none;width:auto;_position:relative;_left:-3px;_margin-right:-3px;}
+.m-last-unit,
+.last-unit {
+  float:none;width:auto;_position:relative;_left:-3px;_margin-right:-3px;
+}
 
 .inner {
   padding: $spacing;

@@ -1,6 +1,7 @@
 'use strict';
 
 const assert           = require('assert');
+const _                = require('lodash');
 const acceptanceHelper = require('../support/acceptance-helper');
 
 describe('signing in and out flows', () => {
@@ -20,5 +21,11 @@ describe('signing in and out flows', () => {
     });
   });
 
-
+  it('viewing the sign in page', (done) => {
+    acceptanceHelper.get('/sign-in', (err, res) => {
+      if (err) { return done(err); }
+      assert(res.text.includes('Sign in'));
+      done();
+    });
+  });
 });

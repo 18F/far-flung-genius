@@ -92,6 +92,7 @@ elements-of-type(html5-block) {
 .size-4-5 {
   width: 80%; }
 
+.m-last-unit,
 .last-unit {
   float: none;
   width: auto;
@@ -138,7 +139,7 @@ p {
   padding-bottom: 15px; }
 
 h1, h2, h3 {
-  font-family: "Merriweather", "Georgia", serif; }
+  font-family: "Source Sans Pro", "Trebuchet MS", "Trebuchet", sans-serif; }
 
 h4, h5, h6 {
   font-family: "Source Sans Pro", "Trebuchet MS", "Trebuchet", sans-serif; }
@@ -167,7 +168,7 @@ h6 {
   line-height: 2; }
 
 a {
-  color: #0776d8;
+  color: #296cbd;
   text-decoration: none; }
 
 a:hover {
@@ -272,7 +273,7 @@ ul.bullet-list {
   opacity: 1; }
 
 .border {
-  border: 1px solid lightgray; }
+  border: 1px solid #4d4d4d; }
 
 .border-left {
   border-left: 1px solid lightgray; }
@@ -316,22 +317,22 @@ ul.bullet-list {
   color: lightgray; }
 
 .primary-text {
-  color: #7dc0fb; }
+  color: #205493; }
 
 .accent-text {
-  color: #ffba1e; }
+  color: #2e8540; }
 
 .accent-2-text {
-  color: #43a978; }
+  color: #02bfe7; }
 
 .info-text {
-  color: #0776d8; }
+  color: #205493; }
 
 .info-2-text {
-  color: #35845e; }
+  color: #0295b4; }
 
 .warn-text {
-  color: #b77f00; }
+  color: #14391c; }
 
 .error-text {
   color: #ff2a09; }
@@ -343,22 +344,22 @@ ul.bullet-list {
   background-color: #212121; }
 
 .background-primary {
-  background-color: #7dc0fb; }
+  background-color: #205493; }
 
 .background-accent {
-  background-color: #ffba1e; }
+  background-color: #2e8540; }
 
 .background-accent-2 {
-  background-color: #43a978; }
+  background-color: #02bfe7; }
 
 .background-info {
-  background-color: #0776d8; }
+  background-color: #205493; }
 
 .background-info-2 {
-  background-color: #35845e; }
+  background-color: #0295b4; }
 
 .background-warn {
-  background-color: #b77f00; }
+  background-color: #14391c; }
 
 .background-error {
   background-color: #ff4022; }
@@ -366,7 +367,7 @@ ul.bullet-list {
 .input-container {
   margin-top: 13px;
   margin-bottom: 10px;
-  margin-right: 12px 2px;
+  margin-right: 14px;
   margin-left: 12px; }
 
 .input,
@@ -383,15 +384,9 @@ textarea {
   *zoom: 1;
   margin-left: -12px;
   margin-top: -10px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid lightgray;
-  -webkit-box-shadow: inset 0px 2px 2px lightgray;
-  -moz-box-shadow: inset 0px 2px 2px lightgray;
-  box-shadow: inset 0px 2px 2px lightgray;
+  /*@include border-radius;*/
+  border: 1px solid #4d4d4d;
+  /*@include box-shadow(inset 0px $input-border-width-special $input-border-width-special $neutral-20);*/
   background-color: #ffffff;
   font-size: 20px;
   color: #212121;
@@ -402,10 +397,8 @@ textarea {
   input[type=email]:focus,
   textarea:focus {
     padding: 9px 11px;
-    border: 2px solid #7dc0fb;
-    -webkit-box-shadow: inset 0px 3px 3px lightgray;
-    -moz-box-shadow: inset 0px 3px 3px lightgray;
-    box-shadow: inset 0px 3px 3px lightgray; }
+    border: 2px solid #02bfe7;
+    /*@include box-shadow(inset 0px $input-border-width-special*1.5 $input-border-width-special*1.5 $neutral-20);*/ }
 
 input[type=checkbox] {
   -webkit-appearance: checkbox; }
@@ -441,7 +434,7 @@ form .error textarea {
   form .error input[type=email]:focus,
   form .error textarea:focus {
     padding: 9px 11px;
-    border: 2px solid #7dc0fb; }
+    border: 2px solid #205493; }
 
 button,
 input[type=submit] {
@@ -463,8 +456,8 @@ label.button {
   font-size: 20px;
   font-family: "Source Sans Pro", "Trebuchet MS", "Trebuchet", sans-serif;
   font-weight: bold;
-  background-color: #7dc0fb;
-  color: #212121;
+  background-color: #205493;
+  color: #ffffff;
   padding: 12px 30px;
   line-height: 1;
   letter-spacing: 1px;
@@ -476,9 +469,7 @@ label.button {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: rgba(33, 33, 33, 0.7) 2px 2px 4px;
-  -moz-box-shadow: rgba(33, 33, 33, 0.7) 2px 2px 4px;
-  box-shadow: rgba(33, 33, 33, 0.7) 2px 2px 4px;
+  /*@include shadowed;*/
   display: block;
   overflow: hidden;
   *overflow: visible;
@@ -489,52 +480,50 @@ label.button {
   div.button:hover,
   label.button:hover {
     text-decoration: none;
-    background-color: #96ccfc; }
+    background-color: #2560a8; }
   button:active,
   input[type=submit]:active,
   a.button:active,
   div.button:active,
   label.button:active {
-    background-color: #64b4fa;
-    -webkit-box-shadow: inset rgba(33, 33, 33, 0.7) 2px 2px 4px;
-    -moz-box-shadow: inset rgba(33, 33, 33, 0.7) 2px 2px 4px;
-    box-shadow: inset rgba(33, 33, 33, 0.7) 2px 2px 4px; }
+    background-color: #1b487e;
+    /*@include depressed-shadow;*/ }
   button.accent,
   input[type=submit].accent,
   a.button.accent,
   div.button.accent,
   label.button.accent {
-    background-color: #ffba1e; }
+    background-color: #2e8540; }
     button.accent:hover,
     input[type=submit].accent:hover,
     a.button.accent:hover,
     div.button.accent:hover,
     label.button.accent:hover {
-      background-color: #ffca51; }
+      background-color: #3bab52; }
     button.accent:active,
     input[type=submit].accent:active,
     a.button.accent:active,
     div.button.accent:active,
     label.button.accent:active {
-      background-color: #eaa200; }
+      background-color: #215f2e; }
   button.accent-2,
   input[type=submit].accent-2,
   a.button.accent-2,
   div.button.accent-2,
   label.button.accent-2 {
-    background-color: #43a978; }
+    background-color: #02bfe7; }
     button.accent-2:hover,
     input[type=submit].accent-2:hover,
     a.button.accent-2:hover,
     div.button.accent-2:hover,
     label.button.accent-2:hover {
-      background-color: #4db885; }
+      background-color: #06d2fd; }
     button.accent-2:active,
     input[type=submit].accent-2:active,
     a.button.accent-2:active,
     div.button.accent-2:active,
     label.button.accent-2:active {
-      background-color: #3c976b; }
+      background-color: #02aace; }
   button.neutral,
   input[type=submit].neutral,
   a.button.neutral,
@@ -558,58 +547,58 @@ label.button {
   a.button.info,
   div.button.info,
   label.button.info {
-    background-color: #0776d8;
+    background-color: #205493;
     color: #e9e9e9; }
     button.info:hover,
     input[type=submit].info:hover,
     a.button.info:hover,
     div.button.info:hover,
     label.button.info:hover {
-      background-color: #0784f1; }
+      background-color: #2560a8; }
     button.info:active,
     input[type=submit].info:active,
     a.button.info:active,
     div.button.info:active,
     label.button.info:active {
-      background-color: #0669c0; }
+      background-color: #1b487e; }
   button.info-2,
   input[type=submit].info-2,
   a.button.info-2,
   div.button.info-2,
   label.button.info-2 {
-    background-color: #35845e;
+    background-color: #0295b4;
     color: #e9e9e9; }
     button.info-2:hover,
     input[type=submit].info-2:hover,
     a.button.info-2:hover,
     div.button.info-2:hover,
     label.button.info-2:hover {
-      background-color: #3c976b; }
+      background-color: #02aace; }
     button.info-2:active,
     input[type=submit].info-2:active,
     a.button.info-2:active,
     div.button.info-2:active,
     label.button.info-2:active {
-      background-color: #2d7251; }
+      background-color: #01809b; }
   button.warn,
   input[type=submit].warn,
   a.button.warn,
   div.button.warn,
   label.button.warn {
-    background-color: #b77f00;
+    background-color: #14391c;
     color: #e9e9e9; }
     button.warn:hover,
     input[type=submit].warn:hover,
     a.button.warn:hover,
     div.button.warn:hover,
     label.button.warn:hover {
-      background-color: #d19100; }
+      background-color: #1a4c25; }
     button.warn:active,
     input[type=submit].warn:active,
     a.button.warn:active,
     div.button.warn:active,
     label.button.warn:active {
-      background-color: #9e6d00; }
+      background-color: #0d2612; }
   button.error,
   input[type=submit].error,
   a.button.error,
@@ -648,7 +637,7 @@ label.button {
   box-shadow: #212121 0 0 20px; }
 
 #header {
-  background-color: #7dc0fb;
+  background-color: #205493;
   height: 60px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   -webkit-box-shadow: #212121 0px 0.5px 10px;
@@ -902,9 +891,30 @@ header, footer {
   color: #112e51; }
 
 header {
+  font-family: "Source Sans Pro", "Trebuchet MS", "Trebuchet", sans-serif;
   line-height: 1; }
   header h1, header h2, header h3, header h4, header h5, header h6, header p {
     padding-bottom: 0; }
+  header .inner {
+    padding: 0.5rem 1rem; }
+  header .spacer {
+    width: 1.5rem;
+    height: 1rem; }
+  header .usa-pride-banner {
+    font-size: 14px;
+    color: white;
+    background-color: #205493; }
+    header .usa-pride-banner img {
+      padding-top: 3px; }
+  header .site-title a {
+    line-height: 1;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #112e51; }
+    header .site-title a:hover {
+      text-decoration: none; }
+  header .site-title .site-description {
+    line-height: 1.5rem; }
 
 footer .our-logo {
   width: 33.333333%;
@@ -913,30 +923,9 @@ footer .our-logo {
 footer .tts-logo {
   width: 100%; }
 
-header .inner {
-  padding: 0.5rem 1rem; }
-
-.usa-pride-banner {
-  font-size: 14px;
-  color: white;
-  background-color: #205493; }
-  .usa-pride-banner img {
-    padding-top: 3px; }
-  .usa-pride-banner .spacer {
-    width: 1.5rem;
-    height: 1rem; }
-
-.site-title {
-  font-family: "Merriweather", "Georgia", serif;
-  line-height: 1.25; }
-  .site-title a {
-    font-size: 2rem;
-    color: #112e51; }
-    .site-title a:hover {
-      text-decoration: none; }
-  .site-title .site-description {
-    line-height: 1.5;
-    margin-top: 0.75rem; }
-
 .page {
   background-color: white; }
+
+.content {
+  max-width: 1024px;
+  margin: 0 auto; }

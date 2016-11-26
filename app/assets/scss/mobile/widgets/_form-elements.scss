@@ -1,7 +1,7 @@
 .input-container {
   margin-top: $input-top-padding + $input-border-width + $shadow-padding/2;
   margin-bottom: $input-top-padding;
-  margin-right: $input-side-padding $shadow-padding/2;
+  margin-right: $input-side-padding + $shadow-padding/2;
   margin-left: $input-side-padding;
 }
 
@@ -17,9 +17,9 @@ textarea {
 
   @include line;
   @include input-margin-fix;
-  @include border-radius;
+  /*@include border-radius;*/
   @include bordered;
-  @include box-shadow(inset 0px $input-border-width-special $input-border-width-special $neutral-20);
+  /*@include box-shadow(inset 0px $input-border-width-special $input-border-width-special $neutral-20);*/
 
   background-color: $lightest-color;
   font-size: $em;
@@ -28,8 +28,8 @@ textarea {
 
   &:focus {
     @include focus-input-padding-fix;
-    border: $input-border-width-special solid $primary;
-    @include box-shadow(inset 0px $input-border-width-special*1.5 $input-border-width-special*1.5 $neutral-20);
+    border: $input-border-width-special solid $accent-2;
+    /*@include box-shadow(inset 0px $input-border-width-special*1.5 $input-border-width-special*1.5 $neutral-20);*/
   }
 }
 

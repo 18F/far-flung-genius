@@ -35,20 +35,20 @@ $neutral-20: mix($lightest-color, $darkest-color, 80%);
 $neutral-10: mix($lightest-color, $darkest-color, 90%);
 
 // Theme based color
-$primary:        rgb(125, 192, 251);
+$primary:        $color-cool-blue;
 $primary-light:  lighten($primary, 5%);
 $primary-dark:   darken($primary, 5%);
 
-$accent:         rgb(255, 186, 30);
+$accent:         $color-green;
 $accent-light:   lighten($accent, 10%);
 $accent-dark:    darken($accent, 10%);
 
-$accent-2:         rgb(67, 169, 120);
+$accent-2:         $color-primary-alt;
 $accent-2-light:   lighten($accent-2, 5%);
 $accent-2-dark:    darken($accent-2, 5%);
 
 // Semantic colors;
-$info:          darken($primary, 30%);
+$info:          $primary;
 $info-light:    lighten($info, 5%);
 $info-dark:     darken($info, 5%);
 
