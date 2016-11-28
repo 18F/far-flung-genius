@@ -27,6 +27,7 @@
   "homepage": "https://github.com/18F/the-reckoning#readme",
   "dependencies": {
     "async": "^2.1.2",
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "client-sessions": "^0.7.0",
