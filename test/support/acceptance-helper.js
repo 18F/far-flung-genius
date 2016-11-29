@@ -8,7 +8,8 @@ module.exports = {
   port: port,
   startServer: startServer,
   stopServer: stopServer,
-  get: get
+  get: get,
+  postForm: postForm
 };
 
 function startServer(done) {
@@ -22,8 +23,12 @@ function stopServer(done) {
   module.exports.server.close(done);
 }
 
-function get(path, callback) {
-  superagent
-    .get('http://localhost:' + port + path)
-    .end(callback);
+function get(path) {
+  return superagent.get('http://localhost:' + port + path);
+}
+
+function postForm(path, attributes) {
+  return superagent
+    .post('http://localhost:' + port + path)
+    .send(attributes);
 }

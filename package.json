@@ -38,6 +38,7 @@
     "knex": "^0.12.2",
     "lodash": "^4.16.6",
     "mustache": "^2.2.1",
+    "node-mocks-http": "^1.5.4",
     "node-sass": "^3.10.1",
     "pg": "^6.1.0",
     "require-directory": "^2.1.1",

@@ -12,6 +12,7 @@ const loggingConfig     = require('./app/config/logging');
 const helmet            = require('helmet');
 const session           = require('client-sessions');
 const sessionConfig     = require('./app/config/session');
+const bodyParser        = require('body-parser');
 
 const routes            = require(appDir + '/routes');
 
@@ -24,6 +25,8 @@ app.use(express.static(appDir + '/public'));
 app.use(helmet());
 app.use(session(sessionConfig));
 app.use(expressWinston.logger(loggingConfig()));
+app.use(bodyParser.json() );
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/', routes);
 
