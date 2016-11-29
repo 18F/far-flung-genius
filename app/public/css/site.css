@@ -326,7 +326,7 @@ ul.bullet-list {
   color: #02bfe7; }
 
 .info-text {
-  color: #205493; }
+  color: #2e8540; }
 
 .info-2-text {
   color: #0295b4; }
@@ -353,7 +353,7 @@ ul.bullet-list {
   background-color: #02bfe7; }
 
 .background-info {
-  background-color: #205493; }
+  background-color: #2e8540; }
 
 .background-info-2 {
   background-color: #0295b4; }
@@ -547,20 +547,20 @@ label.button {
   a.button.info,
   div.button.info,
   label.button.info {
-    background-color: #205493;
+    background-color: #2e8540;
     color: #e9e9e9; }
     button.info:hover,
     input[type=submit].info:hover,
     a.button.info:hover,
     div.button.info:hover,
     label.button.info:hover {
-      background-color: #2560a8; }
+      background-color: #359849; }
     button.info:active,
     input[type=submit].info:active,
     a.button.info:active,
     div.button.info:active,
     label.button.info:active {
-      background-color: #1b487e; }
+      background-color: #277237; }
   button.info-2,
   input[type=submit].info-2,
   a.button.info-2,
@@ -929,3 +929,16 @@ footer .tts-logo {
 .content {
   max-width: 1024px;
   margin: 0 auto; }
+
+.flash {
+  margin-bottom: 0.5rem; }
+  .flash.error {
+    background-color: #fff0ee;
+    color: #bb1900; }
+    .flash.error .border {
+      border-color: #bb1900; }
+  .flash.notice {
+    background-color: #c7ebce;
+    color: #14391c; }
+    .flash.notice .border {
+      border-color: #14391c; }

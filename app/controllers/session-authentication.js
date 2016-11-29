@@ -1,8 +1,9 @@
 'use strict';
 
 class SessionAuthentication {
-  constructor(session) {
-    this.session = session;
+  constructor(req) {
+    this.req = req;
+    this.session = req.session;
   }
 
   signIn(user) {
@@ -10,7 +11,7 @@ class SessionAuthentication {
   }
 
   signOut() {
-    this.session.reset();
+    this.req.session = null;
   }
 }
 

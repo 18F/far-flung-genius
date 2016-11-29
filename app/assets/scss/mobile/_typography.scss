@@ -24,7 +24,7 @@ h5 { font-size: $em*0.95; font-style: italic; }
 h6 { font-size: $em*0.8; line-height: 2; }
 
 a {
-  color: lighten($info, 10%);
+  color: lighten($primary, 10%);
   text-decoration: none;
 }
 

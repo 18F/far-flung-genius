@@ -12,10 +12,15 @@ class MustacheRenderer {
   constructor(name, data) {
     this.name = name;
     this.data = data;
+    this.extraViews = [];
   }
 
   render() {
     return Mustache.render(this.layoutTemplate(), this.view(), this.partials());
+  }
+
+  addView(view) {
+    this.extraViews.push(view);
   }
 
   pageTemplate() {
@@ -37,7 +42,8 @@ class MustacheRenderer {
   }
 
   view() {
-    return Object.assign({}, this.layoutView(), this.pageView());
+    let base = [{}, this.layoutView(), this.pageView()];
+    return Object.assign.apply(null, base.concat(this.extraViews));
   }
 
   partials() {

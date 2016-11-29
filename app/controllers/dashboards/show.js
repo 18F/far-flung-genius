@@ -1,5 +1,11 @@
 'use strict';
 
-module.exports = function dashboard(req, res) {
-  res.end('ok!');
+const MustacheRenderer = require('../../mustache-renderer');
+const FlashMessage     = require('../flash-message');
+
+module.exports = function sessionNew(req, res) {
+  let flash    = new FlashMessage(req).read();
+  let renderer = new MustacheRenderer('dashboard');
+  renderer.addView({flash: flash});
+  res.send(renderer.render());
 };

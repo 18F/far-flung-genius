@@ -11,8 +11,8 @@ module.exports = function sessionNew(req, res, next) {
 
 class SessionNew {
   constructor(req, res) {
-    this.flash = new FlashMessage(req.session);
-    this.auth  = new SessionAuth(req.session);
+    this.flash = new FlashMessage(req);
+    this.auth  = new SessionAuth(req);
     this.res = res;
     this.email = req.body.email;
     this.password = req.body.password;

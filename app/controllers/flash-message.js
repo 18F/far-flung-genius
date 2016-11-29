@@ -1,9 +1,9 @@
 'use strict';
 
 class FlashMessage {
-  constructor(session) {
-    this.session = session;
-    this.session.message  = this.session.message || {};
+  constructor(req) {
+    this.req = req;
+    this.req.session.message = this.req.session.message || {};
   }
 
   error(message) {
@@ -14,15 +14,23 @@ class FlashMessage {
     this.addMessage('notice', message);
   }
 
+  read() {
+    let messages = this.req.session.message;
+    this.req.session.message = {};
+    messages.notice = messages.notice && messages.notice.join('. ');
+    messages.error  = messages.error  && messages.error.join('. ');
+    return messages;
+  }
+
   // ------
 
   normalizeArea(key) {
-    this.session.message[key] = this.session.message[key] || [];
+    this.req.session.message[key] = this.req.session.message[key] || [];
   }
 
   addMessage(key, message) {
     this.normalizeArea(key);
-    this.session.message[key].push(message);
+    this.req.session.message[key].push(message);
   }
 }
 
