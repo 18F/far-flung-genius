@@ -11,7 +11,7 @@ class SessionAuthentication {
   }
 
   signOut() {
-    this.req.session = null;
+    if (this.req.session) { this.req.session.user_id = null; }
   }
 
   userId() {

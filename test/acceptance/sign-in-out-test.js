@@ -1,7 +1,5 @@
 'use strict';
 
-const assert           = require('assert');
-const _                = require('lodash');
 const acceptanceHelper = require('../support/acceptance-helper');
 const userDelete       = require('../../app/models/persistence/user-delete');
 const userCreate       = require('../../app/models/persistence/user-create');
