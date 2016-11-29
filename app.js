@@ -13,6 +13,7 @@ const helmet            = require('helmet');
 
 const session           = require('./app/config/session');
 const bodyParser        = require('body-parser');
+const csrf              = require('csurf');
 
 const routes            = require(appDir + '/routes');
 
@@ -27,6 +28,7 @@ app.use(session());
 app.use(expressWinston.logger(loggingConfig()));
 app.use(bodyParser.json() );
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(csrf());
 
 app.use('/', routes);
 

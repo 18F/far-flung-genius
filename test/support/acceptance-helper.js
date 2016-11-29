@@ -3,6 +3,8 @@
 const superagent  = require('superagent');
 const port        = 3434;
 const app         = require('../../app');
+const Browser = require('zombie');
+Browser.localhost('example.com', port);
 
 module.exports = {
   port: port,
@@ -14,6 +16,7 @@ module.exports = {
 
 function startServer(done) {
   let server = app.listen(port, () => {
+    module.exports.browser = new Browser();
     module.exports.server = server;
     done();
   });

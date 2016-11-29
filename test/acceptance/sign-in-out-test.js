@@ -7,8 +7,13 @@ const userDelete       = require('../../app/models/persistence/user-delete');
 const userCreate       = require('../../app/models/persistence/user-create');
 
 describe('signing in and out flows:', () => {
+  let browser;
+
   beforeEach((done) => {
-    acceptanceHelper.startServer(done);
+    acceptanceHelper.startServer(() => {
+      browser = acceptanceHelper.browser;
+      done();
+    });
   });
 
   afterEach((done) => {
@@ -16,26 +21,14 @@ describe('signing in and out flows:', () => {
   });
 
   it('viewing a protected page and not signed in will redirect to sign in', (done) => {
-    acceptanceHelper
-      .get('/dashboard')
-      .end((err, res) => {
-        if (err) { return done(err); }
-        assert.deepEqual(res.redirects, ['http://localhost:' + acceptanceHelper.port + '/sign-in']);
+    browser
+      .visit('/dashboard', () => {
+        browser.assert.url({pathname: '/sign-in'});
         done();
       });
   });
 
-  it('viewing the sign in page', (done) => {
-    acceptanceHelper
-      .get('/sign-in')
-      .end((err, res) => {
-        if (err) { return done(err); }
-        assert(res.text.includes('Sign in'));
-        done();
-      });
-  });
-
-  describe('when user exists', () => {
+  describe('signing in', () => {
     let email, password;
 
     beforeEach((done) => {
@@ -54,17 +47,17 @@ describe('signing in and out flows:', () => {
         .catch(done);
     });
 
-    // NOTE: this is not a great acceptance test, the dashboard is redirecting again
-    // even though in development it works great.
-    // May need to switch to zombie for better session experience
-    it('and the email and password match the database, it redirect to dashboard', (done) => {
-      acceptanceHelper
-        .postForm('/sessions', {email: email, password: password})
-        .end((err, res) => {
-          if (err) { return done(err); }
-          let redirectToDashboard = _.includes(res.redirects, 'http://localhost:' + acceptanceHelper.port + '/dashboard');
-          assert(redirectToDashboard);
-          done();
+    it('will redirect back to the protected home page /dashboards', (done) => {
+      browser
+        .visit('/sign-in', () => {
+          browser.assert.text('h1', 'Sign in');
+          browser
+            .fill('email', email)
+            .fill('password', password)
+            .pressButton('Sign in', () => {
+              browser.assert.url({pathname: '/dashboard'});
+              done();
+            });
         });
     });
   });
