@@ -1,23 +1,25 @@
 'use strict';
 
-const userQuery   = require('../../models/query/user');
-const encryption  = require('../../models/encryption');
+const userQuery     = require('../../models/query/user');
+const encryption    = require('../../models/encryption');
+const FlashMessage  = require('../flash-message');
+const SessionAuth   = require('../session-authentication');
 
 module.exports = function sessionNew(req, res, next) {
   new SessionNew(req, res, next).perform();
 };
 
 class SessionNew {
-  constructor(req, res, next) {
-    this.req = req;
+  constructor(req, res) {
+    this.flash = new FlashMessage(req.session);
+    this.auth  = new SessionAuth(req.session);
     this.res = res;
-    this.next = next || function () {};
     this.email = req.body.email;
     this.password = req.body.password;
   }
 
   perform() {
-    if (!this.validParams()) { return this.userNotFound(); }
+    if (!this.validParams())    { return this.userNotFound(); }
     userQuery
       .byEmail(this.email)
       .then((user) => {
@@ -36,26 +38,23 @@ class SessionNew {
     this.signInSession();
   }
 
-  userNotFound() {
-    this.req.session.message = {error: 'Account not found'};
-    this.res.redirect('/sign-in');
-    this.next();
-  }
-
   authenticated() {
     return encryption.match(this.password, this.user.encrypted_password);
   }
 
+  userNotFound() {
+    this.flash.error('Account not found');
+    this.res.redirect('/sign-in');
+  }
+
   badPassword() {
-    this.req.session.message = {error: 'Bad password'};
+    this.flash.error('Bad password');
     this.res.redirect('/sign-in?email=' + this.email);
-    this.next();
   }
 
   signInSession() {
-    this.req.session.message = {notice: 'Successfully signed in as ' + this.email};
-    this.req.session.user_id = this.user.id;
+    this.flash.notice('Successfully signed in as ' + this.email);
+    this.auth.signIn(this.user);
     this.res.redirect('/dashboard');
-    this.next();
   }
 }
