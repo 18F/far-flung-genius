@@ -1,7 +1,6 @@
 'use strict';
 
 const assert     = require('assert');
-const httpMocks  = require('node-mocks-http');
 const userCreate = require('../../../app/models/persistence/user-create');
 const userDelete = require('../../../app/models/persistence/user-delete');
 const controller = require('../../../app/controllers/sessions/create');
@@ -9,76 +8,70 @@ const controller = require('../../../app/controllers/sessions/create');
 describe ('sessionCreate controller', () => {
   let req, res;
 
+  beforeEach(() => {
+    res = {};
+    req = {
+      session: {}
+    };
+  });
+
   describe('when the email is missing', () => {
     beforeEach(() => {
-      req = httpMocks.createRequest({
-        body: {
-          password: 's3kret'
-        },
-        session: {}
-      });
-
-      res = httpMocks.createResponse();
+      req.body = {
+        password: 's3kret'
+      };
     });
 
     it('redirects to /sign-in', (done) => {
-      controller(req, res, () => {
-        assert.equal(res.statusCode, 302);
-        assert.equal(res._getRedirectUrl(), '/sign-in');
+      res.redirect = function(path) {
+        assert.equal(path, '/sign-in');
         done();
-      });
+      };
+
+      controller(req, res);
     });
 
     it('stores a message in the session', (done) => {
-      controller(req, res, () => {
-        assert(req.session.message.error);
+      res.redirect = function() {
+        assert(req.session.message.error.length);
         done();
-      });
+      };
+      controller(req, res);
     });
   });
 
   describe('when the password is missing', () => {
     beforeEach(() => {
-      req = httpMocks.createRequest({
-        body: {
-          email: 'email@gmail.com'
-        },
-        session: {}
-      });
-
-      res = httpMocks.createResponse();
+      req.body = {
+        email: 'email@gmail.com'
+      };
     });
 
     it('redirects to /sign-in', (done) => {
-      controller(req, res, () => {
-        assert.equal(res.statusCode, 302);
-        assert.equal(res._getRedirectUrl(), '/sign-in');
-        assert(req.session.message.error);
+      res.redirect = function(path) {
+        assert.equal(path, '/sign-in');
+        assert(req.session.message.error.length);
         done();
-      });
+      };
+      controller(req, res);
     });
   });
 
   describe('when the email is not found', () => {
     beforeEach(() => {
-      req = httpMocks.createRequest({
-        body: {
-          email: 'email@gmail.com',
-          password: 's3kret'
-        },
-        session: {}
-      });
-
-      res = httpMocks.createResponse();
+      req.body = {
+        email: 'email@gmail.com',
+        password: 's3kret'
+      };
     });
 
     it('redirects to /sign-in', (done) => {
-      controller(req, res, () => {
-        assert.equal(res.statusCode, 302);
-        assert.equal(res._getRedirectUrl(), '/sign-in');
-        assert(req.session.message.error);
+      res.redirect = function (path) {
+        assert.equal(path, '/sign-in');
+        assert(req.session.message.error.length);
         done();
-      });
+      };
+      controller(req, res);
     });
   });
 
@@ -96,15 +89,10 @@ describe ('sessionCreate controller', () => {
       email = 'kane@gov.tech';
       password = 's3kret';
 
-      req = httpMocks.createRequest({
-        body: {
-          email: email,
-          password: 'not-a-match'
-        },
-        session: {}
-      });
-
-      res = httpMocks.createResponse();
+      req.body = {
+        email: email,
+        password: 'not-a-match'
+      };
 
       userCreate({email: email, password: password})
         .then(() => { done(); })
@@ -119,12 +107,12 @@ describe ('sessionCreate controller', () => {
     });
 
     it('redirects to /sign-in', (done) => {
-      controller(req, res, () => {
-        assert.equal(res.statusCode, 302);
-        assert.equal(res._getRedirectUrl(), '/sign-in?email='+email);
-        assert(req.session.message.error);
+      res.redirect = function (path) {
+        assert.equal(path, '/sign-in?email='+email);
+        assert(req.session.message.error.length);
         done();
-      });
+      };
+      controller(req, res);
     });
   });
 
@@ -142,15 +130,10 @@ describe ('sessionCreate controller', () => {
       email = 'kane@gov.tech';
       password = 's3kret';
 
-      req = httpMocks.createRequest({
-        body: {
-          email: email,
-          password: password
-        },
-        session: {}
-      });
-
-      res = httpMocks.createResponse();
+      req.body = {
+        email: email,
+        password: password
+      };
 
       userCreate({email: email, password: password})
         .then((createUser) => {
@@ -168,26 +151,28 @@ describe ('sessionCreate controller', () => {
     });
 
     it('redirects to /sign-in', (done) => {
-      controller(req, res, () => {
-        assert.equal(res.statusCode, 302);
-        assert.equal(res._getRedirectUrl(), '/dashboard');
+      res.redirect = function (path) {
+        assert.equal(path, '/dashboard');
         done();
-      });
+      };
+      controller(req, res);
     });
 
     it('sets a success message on the session', (done) => {
-      controller(req, res, () => {
-        assert.equal(res.statusCode, 302);
-        assert.equal(res._getRedirectUrl(), '/dashboard');
+      res.redirect = function () {
+        assert(!req.session.message.errors);
+        assert(req.session.message.notice.length);
         done();
-      });
+      };
+      controller(req, res);
     });
 
     it('signs the user into the session', (done) => {
-      controller(req, res, () => {
+      res.redirect = function () {
         assert.equal(req.session.user_id, user.id);
         done();
-      });
+      };
+      controller(req, res);
     });
   });
 });
