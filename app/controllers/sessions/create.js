@@ -44,12 +44,12 @@ class SessionNew {
 
   userNotFound() {
     this.flash.error('Account not found');
-    this.res.redirect('/sign-in');
+    this.res.redirect(SessionAuth.redirectPath);
   }
 
   badPassword() {
     this.flash.error('Bad password');
-    this.res.redirect('/sign-in?email=' + this.email);
+    this.res.redirect(SessionAuth.redirectPath +'?email=' + this.email);
   }
 
   signInSession() {

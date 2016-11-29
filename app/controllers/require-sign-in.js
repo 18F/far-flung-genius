@@ -1,12 +1,43 @@
 'use strict';
 
+const userQuery             = require('../models/query/user');
+const SessionAuthentication = require('./session-authentication');
+const FlashMessage          = require('./flash-message');
+
 module.exports = function(req, res, next) {
-  if (authorized(req.session)) { return next(); }
-  res.redirect('/sign-in');
+  new RequireSignIn(req, res, next).perform();
 };
 
-function authorized(session) {
-  if (!session) { return false; }
-  if (!session.user_id) { return false; }
-  return true;
+class RequireSignIn {
+  constructor(req, res, next) {
+    this.sessionAuth = new SessionAuthentication(req);
+    this.flash       = new FlashMessage(req);
+    this.req = req;
+    this.res = res;
+    this.next = next;
+  }
+
+  perform() {
+    if (!this.validParams()) { return this.redirect(); }
+    userQuery
+      .byId(this.sessionAuth.userId())
+      .then((user) => {
+        if (!user) { return this.redirect(); }
+        this.success(user);
+      });
+  }
+
+  validParams() {
+    return !!this.sessionAuth.userId();
+  }
+
+  redirect() {
+    this.flash.notice('Please sign in');
+    this.res.redirect(SessionAuthentication.redirectPath);
+  }
+
+  success(user) {
+    this.res.locals.user = user;
+    this.next();
+  }
 }

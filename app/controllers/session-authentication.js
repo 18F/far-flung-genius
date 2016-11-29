@@ -13,6 +13,12 @@ class SessionAuthentication {
   signOut() {
     this.req.session = null;
   }
+
+  userId() {
+    return this.req.session && this.req.session.user_id;
+  }
 }
+
+SessionAuthentication.redirectPath = '/sign-in';
 
 module.exports = SessionAuthentication;
