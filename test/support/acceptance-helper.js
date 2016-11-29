@@ -1,17 +1,17 @@
 'use strict';
 
-const superagent  = require('superagent');
 const port        = 3434;
 const app         = require('../../app');
 const Browser = require('zombie');
 Browser.localhost('example.com', port);
 
+const userCreate  = require('../../app/models/persistence/user-create');
+
 module.exports = {
   port: port,
   startServer: startServer,
   stopServer: stopServer,
-  get: get,
-  postForm: postForm
+  signIn: signIn
 };
 
 function startServer(done) {
@@ -26,12 +26,16 @@ function stopServer(done) {
   module.exports.server.close(done);
 }
 
-function get(path) {
-  return superagent.get('http://localhost:' + port + path);
-}
+function signIn(attributes, callback) {
+  let browser = module.exports.browser;
 
-function postForm(path, attributes) {
-  return superagent
-    .post('http://localhost:' + port + path)
-    .send(attributes);
+  userCreate(attributes)
+    .then(() => {
+      browser.visit('/sign-in', () => {
+        browser
+          .fill('email', attributes.email)
+          .fill('password', attributes.password)
+          .pressButton('Sign in', callback);
+      });
+    });
 }

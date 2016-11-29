@@ -59,4 +59,35 @@ describe('signing in and out flows:', () => {
         });
     });
   });
+
+  describe('signing out', () => {
+    let email, password;
+
+    beforeEach((done) => {
+      email = 'email-y@GMAIL.com';
+      password = 's3kr3tz';
+
+      userDelete
+        .all()
+        .then(() => {
+          acceptanceHelper.signIn({email: email, password: password}, done);
+        })
+        .catch(done);
+    });
+
+    it('will prevent you from seeing protected pages', (done) => {
+      browser
+        .visit('/sign-out', () => {
+          browser.assert.url({pathname: '/sign-in'});
+          tryVisitingProtectedPage();
+        });
+
+      function tryVisitingProtectedPage() {
+        browser.visit('/dashboard', () => {
+          browser.assert.url({pathname: '/sign-in'})
+          done();
+        });
+      }
+    });
+  });
 });
