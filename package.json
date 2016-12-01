@@ -40,6 +40,8 @@
     "lodash": "^4.16.6",
     "mustache": "^2.2.1",
     "node-sass": "^3.10.1",
+    "nodemailer": "^2.6.4",
+    "nodemailer-smtp-transport": "^2.7.2",
     "pg": "^6.1.0",
     "require-directory": "^2.1.1",
     "winston": "^2.2.0"
